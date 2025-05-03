@@ -16,6 +16,7 @@ class Tarea(db.Model):
     fecha = db.Column(db.String(20), nullable=False)
     descripcion = db.Column(db.Text, nullable=True)
     email = db.Column(db.String(100), nullable=False)
+    completada = db.Column(db.Boolean, default=False)
 
 """
 Creamos las tablas la primera vez que se corre la app.
@@ -44,6 +45,21 @@ def crear_tarea():
     db.session.add(nueva_tarea)
     db.session.commit()
     return redirect("/")
+
+@app.route("/eliminar-tarea/<int:id>", methods=["POST"])
+def eliminar_tarea(id):
+    tarea = Tarea.query.filter_by(id=id).first()
+    db.session.delete(tarea)
+    db.session.commit()
+    return redirect("/")
+
+@app.route("/cambiar-estado/<int:id>", methods=["POST"])
+def cambiar_estado(id):
+    tarea = Tarea.query.filter_by(id=id).first()
+    tarea.completada = not tarea.completada
+    db.session.commit()
+    return redirect("/")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

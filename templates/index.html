@@ -100,20 +100,21 @@
             {% for tarea in tareas %}
             <li class="flex justify-between items-center p-2">
               <div class="flex items-center">
-                <input type="checkbox" class="mr-2" />
-                <strong>{{ tarea.titulo }}</strong>
+                <form action="/cambiar-estado/{{ tarea.id }}" method="POST">
+                  <input type="checkbox" class="mr-2" onchange="this.form.submit()" {% if tarea.completada %} checked {% endif %} />
+                </form>
+                <span class="{% if tarea.completada %} line-through text-gray-500 {% endif %}">{{ tarea.titulo }}</span>
               </div>
               <div class="flex space-x-2">
                 <button
                   class="bg-blue-500 text-white rounded hover:bg-blue-600 px-2 py-1"
                 >
                   <a href="#" class="text-white hover:font-bold">Editar</a>
-                </button>
-                <button
-                  class="bg-red-500 text-white rounded hover:bg-red-600 px-2 py-1"
-                >
-                  <a class="text-white hover:font-bold" href="#">Eliminar</a>
-                </button>
+                <form action="/eliminar-tarea/{{ tarea.id }}" method="POST">
+                  <button type="submit", class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                    Eliminar
+                  </button>
+                </form>
               </div>
             </li>
             {% else %}
