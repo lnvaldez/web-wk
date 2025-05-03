@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tareas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <header class="bg-lime-950 p-4 text-white">
+      <nav class="max-w-6xl mx-auto flex justify-between items-center">
+        <a href="#" class="text-lg font-bold">To-Do App</a>
+        <ul class="flex space-x-4">
+          <li>
+            <a href="#" class="hover:text-blue-500">Mis Tareas</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-blue-500">Sobre Nosotros</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="max-w-6xl mx-auto p-4 mt-6">
+      <h1 class="text-2xl font-bold mb-6">Gestión de Tareas</h1>
+
+      <div class="flex flex-col gap-6">
+        <form
+          class="flex-1 bg-white p-4 rounded shadow"
+          action="aqui va la url/ruta que va a procesar los datos"
+          method="se define el metodo de envio al servidor"
+        >
+          <div class="mb-4">
+            <label for="titulo" class="block text-gray-700 mb-1"
+              >Título de la tarea</label
+            >
+            <input
+              type="text"
+              id="titulo"
+              name="titulo"
+              class="w-full p-2 border rounded"
+              placeholder="Ejemplo: Comprar víveres"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="fecha" class="block text-gray-700 mb-1"
+              >Fecha de vencimiento</label
+            >
+            <input
+              type="date"
+              id="fecha"
+              name="fecha"
+              class="w-full p-2 border rounded"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label for="descripcion" class="block text-gray-700 mb-1"
+              >Descripción</label
+            >
+            <textarea
+              id="descripcion"
+              name="descripcion"
+              class="w-full p-2 border rounded"
+              placeholder="Detalles adicionales de la tarea"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 mb-1"
+              >Correo electrónico</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-2 border rounded"
+              placeholder="correo@ejemplo.com"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="bg-lime-700 text-white px-4 py-2 rounded hover:bg-lime-800 hover:font-bold"
+          >
+            Agregar tarea
+          </button>
+        </form>
+
+        <section class="flex-1 bg-white p-4 rounded shadow">
+          <div class="bg-lime-950 text-white p-2 rounded mb-4">
+            <h2 class="text-xl font-bold">Mis Tareas</h2>
+          </div>
+
+          <ul class="flex flex-col space-y-4">
+            {% for tarea in tareas %}
+            <li class="flex justify-between items-center p-2">
+              <div class="flex items-center">
+                <input type="checkbox" class="mr-2" />
+                <strong>{{ tarea.titulo }}</strong>
+              </div>
+              <div class="flex space-x-2">
+                <button
+                  class="bg-blue-500 text-white rounded hover:bg-blue-600 px-2 py-1"
+                >
+                  <a href="#" class="text-white hover:font-bold">Editar</a>
+                </button>
+                <button
+                  class="bg-red-500 text-white rounded hover:bg-red-600 px-2 py-1"
+                >
+                  <a class="text-white hover:font-bold" href="#">Eliminar</a>
+                </button>
+              </div>
+            </li>
+            {% else %}
+            <li>No hay tareas.</li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
