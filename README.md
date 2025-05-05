@@ -4,13 +4,15 @@ Este proyecto enseña cómo construir un backend paso a paso para una aplicació
 
 ---
 
-```
 1 - Descargar la rama
+
 2 - Extraer zip
+
 3 - Abrir la carpeta en Visual Studio Code
-4 - [ Activar entorno virtual ](https://flask.palletsprojects.com/en/stable/installation/#virtual-environments)
-5 - pip install -r requirements.txt
-```
+
+4 - [Activar entorno virtual](https://flask.palletsprojects.com/en/stable/installation/#virtual-environments)
+
+pip install -r requirements.txt
 
 ## 🔰 `01 - Configuración inicial`
 
